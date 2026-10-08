@@ -8,6 +8,30 @@ schema: spec-driven
 #     Tech stack: TypeScript, React, Node.js
 #     We use conventional commits
 #     Domain: e-commerce platform
+context: |
+  Product: Banana, a shape-based walking app (iOS + Android) that generates
+  walkable routes forming a user-selected shape. Pilot cities: Montréal (Québec)
+  and Toronto (Ontario). Walking only in the MVP; cycling must remain addable.
+  Architecture (BAN-7, see docs/architecture.md and the platform-architecture spec):
+  - Cost: $0/month recurring infrastructure for the MVP. No paid recurring
+    service without an approved OpenSpec change. Only unavoidable cost is the
+    Apple Developer Program.
+  - Mobile: React Native + Expo, TypeScript, development builds; binaries built
+    locally on the developer's Mac (EAS Free optional).
+  - Maps: MapLibre Native (@maplibre/maplibre-react-native) with OpenFreeMap
+    OSM vector tiles; tile/style URL is configuration; OSM attribution required.
+  - Backend: Supabase Free plan, PostgreSQL + PostGIS, RLS, PostgREST, Edge
+    Functions (TypeScript), project in ca-central-1. Local dev via Supabase CLI.
+    Store each recorded walk as one geometry. Daily keep-alive; weekly encrypted
+    backups outside GitHub.
+  - Auth: Supabase Auth with Sign in with Apple and Sign in with Google only;
+    the MVP sends no email. Account deletion is server-side and revokes Apple tokens.
+  - CI/CD: GitHub Actions on Linux runners (public repo); no mobile builds in CI.
+    Never commit secrets or personal data; the repository is public.
+  - City selection: manual (Montréal/Toronto), stored on device, no location
+    permission to browse.
+  Workflow: Linear (BAN-<n>) is the PM source of truth; every change links a
+  Linear issue; branches ban-<n>-<slug>; squash merges; conventional commits.
 
 # Per-artifact rules (optional)
 # Add custom rules for specific artifacts.
