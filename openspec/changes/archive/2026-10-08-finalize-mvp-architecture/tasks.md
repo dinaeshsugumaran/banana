@@ -27,6 +27,6 @@
 ## 5. Review, merge, and archive
 
 - [x] 5.1 Open a PR to `main` that references BAN-7 and names the OpenSpec change `finalize-mvp-architecture`, move BAN-7 to In Review, and verify the PR shows the BAN-7 link
-- [ ] 5.2 After approval, squash-merge with a commit message containing `BAN-7`, and verify the squash commit on `main` carries the reference
-- [ ] 5.3 Run `/opsx:archive` for `finalize-mvp-architecture`, and verify `openspec/specs/platform-architecture/spec.md` and `openspec/specs/city-selection/spec.md` exist
-- [ ] 5.4 Move BAN-7 to Done only after the merge and the status update, and verify its status reads "Done"
+- [x] 5.2 After approval, squash-merge with a commit message containing `BAN-7`, and verify the squash commit on `main` carries the reference
+- [x] 5.3 Run `/opsx:archive` for `finalize-mvp-architecture`, and verify `openspec/specs/platform-architecture/spec.md` and `openspec/specs/city-selection/spec.md` exist
+- [x] 5.4 Move BAN-7 to Done only after the merge and the status update, and verify its status reads "Done"
