@@ -1,8 +1,10 @@
 # Banana — Product Requirements
 
-Status: Product-discovery output. Not yet linked to a Linear issue or an OpenSpec
-change. This document records only the decisions explicitly approved during the
-discovery interview on 2026-09-03. Items the user deferred are listed under
+Status: Product-discovery output, tracked in Linear as BAN-5 (Banana MVP). This
+document records the decisions explicitly approved during the discovery
+interview on 2026-09-03, plus later approved decisions: pilot cities and initial
+shape set (BAN-6) and the technical architecture (BAN-7, see
+[`docs/architecture.md`](architecture.md)). Items still deferred are listed under
 "Open questions".
 
 ---
@@ -54,8 +56,14 @@ start the walk → see live GPS position → record the walk → save it to hist
 - MVP shapes are **hand-curated / pre-determined per city** — not user-submitted
   and not automatically generated.
 - The catalog per city starts small and manageable. Categories include
-  recognizable objects, animals, symbols, and other interesting shapes. The exact
-  number and category mix are decided during product planning.
+  recognizable objects, animals, symbols, and other interesting shapes.
+- **Approved initial shape set (BAN-6):** six shapes — House, Arrow, Heart,
+  Cat head, Fish, Banana (objects: House, Banana; symbols: Arrow, Heart;
+  animals: Cat head, Fish). The same six shapes are targeted in both pilot
+  cities, for a target of 12 routes. A shape that cannot reach the approved
+  shape-match threshold in a city is not shipped in that city, so a city may
+  launch with fewer than six shapes. Target size: approximately 1–1.5 km
+  across, with a walking route of approximately 3–6 km.
 - A shape is stored as an **abstract geometric form that is fitted to the local
   street network**, not a permanently fixed route. The same conceptual shape can
   therefore yield different walkable routes over time.
@@ -156,7 +164,8 @@ start the walk → see live GPS position → record the walk → save it to hist
 - **Platform:** native mobile application for both iOS and Android. No web / PWA
   version. Prefer a cross-platform framework to maintain a single codebase for
   both platforms.
-- **Launch city:** one pilot city (specific city not yet finalized).
+- **Launch cities:** two pilot cities — Montréal, Québec and Toronto, Ontario
+  (BAN-6).
 - **Accounts / authentication:** users must have accounts and log in. Walks and
   user data are associated with the user's account.
 - **Backend and database:** required. The backend serves the shape catalog and
@@ -179,7 +188,7 @@ start the walk → see live GPS position → record the walk → save it to hist
 - Multiple routes per shape.
 - Progressive shape colouring / completion, heading display.
 - Cycling travel mode.
-- Additional cities beyond the pilot.
+- Additional cities beyond the two pilot cities (Montréal and Toronto).
 
 ---
 
@@ -247,7 +256,7 @@ Not part of the MVP; recorded as intended direction.
 The primary measure of success is whether the core concept works in the real
 world:
 
-- A user can create an account, select a shape in the pilot city, and clearly see
+- A user can create an account, select a shape in a pilot city, and clearly see
   the proposed route.
 - The user can walk the route while the app tracks their live GPS position.
 - The actual GPS path is recorded and saved to their account / history.
@@ -260,9 +269,9 @@ world:
 
 ### Measurable targets (kept deliberately simple for the MVP)
 
-- Start with one pilot city.
-- Launch with a small curated set of recognizable shapes; the exact number is
-  determined during implementation planning.
+- Start with two pilot cities: Montréal and Toronto.
+- Launch with a small curated set of recognizable shapes: six shapes targeted in
+  each city (12 routes), subject to the per-city shape-match rule.
 - Establish a practical route / shape-match threshold during route validation
   rather than requiring mathematical perfection.
 - Test with real pilot users and measure whether they can successfully complete
@@ -281,17 +290,27 @@ artwork → save it to history.
 
 ## 12. Open questions (deferred during discovery)
 
-- Pilot city not yet finalized.
-- Exact number and category mix of shapes in the pilot catalog — decided during
-  product planning.
+### Still open
+
 - Specific third-party OpenStreetMap-based routing engine — selected later on
-  route quality, cost, licensing, and API capabilities.
-- Specific map rendering stack (MapLibre named as a preference, not a final
-  decision).
-- Cross-platform framework choice.
-- Cloud / backend provider.
-- CI/CD and deployment provider and workflow.
+  route quality, cost, licensing, and API capabilities (BAN-8).
 - The practical route / shape-match threshold value — set during route
   validation.
 - Numerical targets for crash rate, GPS reliability, and battery usage — set
   after a real-world baseline exists.
+- French-language requirements — not yet decided.
+
+### Resolved
+
+- Pilot cities — Montréal and Toronto (BAN-6).
+- Number and category mix of shapes — six shapes across objects, symbols, and
+  animals (BAN-6; see §4).
+- Map rendering stack — MapLibre with OpenFreeMap OpenStreetMap tiles (BAN-7;
+  see [`docs/architecture.md`](architecture.md)).
+- Cross-platform framework — React Native with Expo (BAN-7).
+- Cloud / backend provider — Supabase Free plan (PostgreSQL + PostGIS) in
+  Canada Central (BAN-7).
+- CI/CD and deployment — GitHub Actions; local mobile builds; TestFlight and
+  Firebase App Distribution for the pilot (BAN-7).
+- City-selection UX — manual selection of Montréal or Toronto, no location
+  permission to browse (BAN-7).
