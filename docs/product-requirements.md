@@ -230,9 +230,9 @@ Not part of the MVP; recorded as intended direction.
   maintain.
 - **Platform:** cross-platform mobile application supporting both iOS and Android.
   No web / PWA version for the foreseeable future.
-- **Backend / cloud:** no specific cloud provider is required at this stage.
-  Choose based on cost, simplicity, scalability, and suitability for GPS /
-  location data.
+- **Backend / cloud:** decided in BAN-7 — Supabase Free plan (PostgreSQL +
+  PostGIS) in Canada Central (`ca-central-1`), at $0/month recurring
+  infrastructure for the MVP. See [`docs/architecture.md`](architecture.md).
 - **Privacy:** user location data is private. The app must obtain appropriate
   location permission / consent and collect only the location data necessary for
   the application's functionality. Recorded walks belong to the user's account.
@@ -245,9 +245,11 @@ Not part of the MVP; recorded as intended direction.
 - **Future flexibility:** the architecture should allow future additions such as
   cycling, offline maps, additional navigation capabilities, and on-demand route
   generation without requiring a complete rewrite.
-- **CI/CD and deployment:** no specific provider is required yet. Use a
-  straightforward development and deployment workflow appropriate for a small
-  project.
+- **CI/CD and deployment:** decided in BAN-7 — GitHub Actions for pull-request
+  checks and database migrations, mobile binaries built locally, and pilot
+  distribution through TestFlight (iOS) and Firebase App Distribution (Android).
+  Keep the workflow straightforward and appropriate for a small project. See
+  [`docs/architecture.md`](architecture.md).
 
 ---
 
